@@ -1,0 +1,173 @@
+
+
+Dev Phases:
+Recommended Build Order (Solo Dev, Ship Fast)
+Six phases. Each phase is shippable on its own.
+
+Phase 0 — Foundation (Week 1)
+Goal: Replace the starter with the TechTivAI shell.
+
+Design tokens in globals.css
+
+Colors: #04060d, #080d1c, cyan/lime/violet/rose, muted text
+Tailwind @theme mapping — no hardcoded hex in components
+Typography
+
+Clash Display (headings), Cabinet Grotesk (body), Instrument Serif (accent) via Fontsource
+Remove Geist from layout.tsx
+Folder structure (from cursor-context.md)
+
+app/(pages)/...
+components/{ui,sections,shared,animations,three}
+lib/
+prisma/
+Base UI
+
+Button, Card, Badge, Input, GlassPanel
+Navbar, Footer, mobile menu
+Layout & metadata
+
+SEO defaults, Open Graph, dark theme only
+SectionWrapper + Framer Motion stagger helper
+.env.example with all env vars from cursor-context
+
+Exit criteria: Branded shell, nav works, placeholder homepage sections stack vertically.
+
+Phase 1 — Homepage Shell (Week 2–3)
+Goal: All 11 sections as static/interactive UI (no real AI yet).
+
+Correct homepage order (blueprint)
+#	Section	Status
+✅ 01 Cinematic Hero 
+✅ 02 Trust & Global Positioning 
+✅ 03 AI Discovery Experience 
+✅ 04 AI Service Ecosystem
+✅ 05 Live AI Workflow Visualizer
+✅ 06 AI Voice Consultant
+✅ 07 AI Pricing Engine
+✅ 08 Industry Solutions
+✅ 09 Case Studies
+✅ 10 Live Dashboard Demo
+✅ 11 Final CTA
+
+Phase 2 — Data Layer & Leads (Week 4)
+Goal: Persist interactions before wiring expensive AI.
+
+Prisma schema (minimum viable):
+
+Lead — contact info, source, discovery answers (JSON)
+AiSession — type (chat/discovery/voice), messages, metadata
+Proposal — job_id, status, r2_url
+User — admin (Better Auth)
+Neon dev DB + lib/prisma.ts singleton
+
+POST /api/leads — Zod validation, save lead
+
+Wire discovery wizard + contact form → API
+
+PostHog — page views, CTA clicks, wizard completion
+
+Exit criteria: Completing discovery saves a lead; you can see it in Prisma Studio.
+
+Phase 3 — AI Core (Week 5–6)
+Goal: Real intelligence on discovery + hero chat.
+
+Dependencies: ai (Vercel AI SDK), openai, @anthropic-ai/sdk, zod
+lib/ai.ts — server-only clients
+POST /api/ai/recommend — discovery answers → recommendations + ROI (GPT-4o)
+POST /api/ai/chat — streaming chat for hero + discovery
+POST /api/pricing/calculate — server-side pricing logic
+Log every session to AiSession
+Start with rule-based pricing fallback if AI is slow; refine prompts later.
+
+Exit criteria: Discovery wizard returns real AI recommendations; hero chat streams; pricing updates from API.
+
+Phase 4 — Voice, Proposals & Auth (Week 7–8)
+Goal: High-value conversion features + admin access.
+
+Better Auth — Google OAuth, app/api/auth/[...all]/route.ts
+Vapi — POST /api/voice/session, embed voice UI in Hero + Contact
+Proposals — POST /api/proposals/generate → n8n webhook → return job_id → poll status
+Cloudflare R2 — store generated PDFs
+/dashboard — protected route: leads list, session logs, proposal status
+Exit criteria: Voice call works end-to-end; proposal job triggers n8n; admin can log in and view leads.
+
+Phase 5 — Secondary Pages & Polish (Week 9–10)
+Goal: Complete site map + SEO.
+
+Page	Priority
+/discovery
+Full-screen onboarding (wizard v2)
+/services
+9 service detail sections
+/industries/[slug]
+8 dynamic pages (start with 3–4)
+/pricing
+Standalone pricing engine
+/case-studies
+Expandable stories
+/contact
+Form + voice + calendar embed
+/resources
+Blueprint only — blog MDX or defer to Phase 6
+Plus: performance (lazy load Three.js/GSAP), accessibility pass, Lighthouse tuning.
+
+Phase 6 — Launch & Growth (Week 11+)
+Vercel production + Neon + Prisma Accelerate
+Upstash rate limiting on AI routes
+LangGraph pipeline for multi-step proposals (n8n)
+CRM webhooks (HubSpot/GHL)
+Content/SEO (resource center, industry landing pages)
+Homepage Section Order Note
+Blueprint and cursor-context.md differ slightly:
+
+Blueprint: Hero → Trust early (section 2)
+cursor-context: Trust at section 8 (after value props)
+Recommendation: Follow cursor-context for build order (value before trust), but you can move Trust to position 2 later if you want faster credibility on first scroll.
+
+Dependency Install Map (by phase)
+Phase 0:  framer-motion, @fontsource/*
+Phase 1:  gsap, three, @react-three/fiber, @react-three/drei
+Phase 2:  prisma, @prisma/client, posthog-js
+Phase 3:  ai, openai, @anthropic-ai/sdk, zod
+Phase 4:  better-auth, @aws-sdk/client-s3 (R2)
+Phase 6:  @upstash/ratelimit, langgraph (when needed)
+
+
+===========================================================
+
+
+
+
+
+
+
+
+TASKS:
+10-Jun-2026
+[✅]Researched and analyzed the TechTivAI platform requirements, features, and implementation roadmap.
+[✅]Planned the website architecture, user flows, and AI-powered modules for TechTivAI.
+[✅]Evaluated the technical stack, AI integrations, and automation tools required for the platform.
+
+11-Jun-2026
+[✅] Initialized the TechTivAI project and organized the complete folder structure.
+[✅] Installed and configured all required libraries and dependencies for the project setup.
+[✅] Set up global.css with the design system, including colors, fonts, glassmorphism effects, and grid utilities.
+[✅] Built reusable base UI components such as Buttons, Cards, Badges, Inputs, and Glass Panels.
+[✅] Developed core layouts and navigation components, including Navbar, Footer, Section Wrappers, and SEO metadata/Open Graph setup in the root layout.
+[✅] Structured the main application pages, including Home, Discovery, Services, Pricing, Case Studies, and Contact.
+[✅] Configured environment variables, site information, utility functions, and project-wide configuration files.
+
+15-Jun-2026
+
+[✅] Completed all 11 homepage sections (Hero to Final CTA), finalizing the Phase 1 homepage structure.
+[✅] Replaced generic section badges with clear, descriptive section labels for improved content hierarchy.
+[✅] Built the Final CTA section with four conversion paths: Discovery, Contact, Strategy Call, and Manual Onboarding.
+[✅] Resolved dashboard Live Activity hydration issues using SSR-safe timestamps and client-side updates.
+[✅] Integrated shadcn/ui and Aceternity World Map into the Trust & Global Positioning section.
+[✅] Implemented an animated world map showcasing global connections across the USA, UK, Europe, Middle East, and Australia.
+[✅] Fixed AI Service Ecosystem graph alignment by synchronizing node positions and connection lines.
+[✅] Optimized the Service Ecosystem layout with a larger graph area and structured automation details section.
+[✅] Restored and enhanced the custom Button component, including link support and multiple variant styles.
+
+
