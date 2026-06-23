@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { GlassPanel } from "@/components/ui/glass-panel";
 import { DiscoveryOption } from "@/components/sections/discovery/discovery-option";
 import { DiscoveryProgress } from "@/components/sections/discovery/discovery-progress";
 import { DiscoveryResults } from "@/components/sections/discovery/discovery-results";
+import { cn } from "@/lib/utils";
 import {
   businessProblems,
   businessSizes,
@@ -39,11 +40,20 @@ const stepVariants = {
   }),
 };
 
-export function DiscoveryWizard() {
+type DiscoveryWizardProps = {
+  onStepChange?: (step: number, showResults: boolean) => void;
+  className?: string;
+};
+
+export function DiscoveryWizard({ onStepChange, className }: DiscoveryWizardProps = {}) {
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [answers, setAnswers] = useState<DiscoveryAnswers>(emptyDiscoveryAnswers);
   const [showResults, setShowResults] = useState(false);
+
+  useEffect(() => {
+    onStepChange?.(step, showResults);
+  }, [step, showResults, onStepChange]);
 
   const result = useMemo(
     () => calculateDiscoveryResult(answers),
@@ -195,7 +205,7 @@ export function DiscoveryWizard() {
   };
 
   return (
-    <GlassPanel variant="elevated" className="overflow-hidden">
+    <GlassPanel variant="elevated" className={cn("overflow-hidden", className)}>
       <div className="border-b border-glass-border p-5 sm:p-8">
         {!showResults ? (
           <DiscoveryProgress

@@ -1,3 +1,4 @@
+
 export const siteConfig = {
   name: "TechTivAI",
   tagline: "Deploy AI Employees Across Your Business",
@@ -9,6 +10,7 @@ export const siteConfig = {
 export const navLinks = [
   { label: "Discovery", href: "/discovery" },
   { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries"},
   { label: "Pricing", href: "/pricing" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Contact", href: "/contact" },

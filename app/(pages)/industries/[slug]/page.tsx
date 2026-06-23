@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageShell } from "@/components/shared/page-shell";
+import { IndustryDetailView } from "@/components/pages/industries/industry-detail-view";
 import { getIndustry, industries } from "@/lib/industries";
 
 type IndustryPageProps = {
@@ -35,11 +35,5 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
     notFound();
   }
 
-  return (
-    <PageShell
-      badge={industry.name}
-      title={`${industry.name} AI Automation`}
-      description={industry.description}
-    />
-  );
+  return <IndustryDetailView slug={slug} />;
 }

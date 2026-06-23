@@ -6,6 +6,7 @@ import {
   getIndustryCardClasses,
   industryAccentStyles,
 } from "@/components/sections/industries/industry-styles";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { cn } from "@/lib/utils";
 
 type IndustryCardProps = {
@@ -28,12 +29,12 @@ export function IndustryCard({ industry, active, onSelect }: IndustryCardProps) 
       <div className="mb-3 flex items-start justify-between gap-2">
         <span
           className={cn(
-            "flex h-10 w-10 items-center justify-center rounded-xl text-lg ring-1",
+            "flex h-10 w-10 items-center justify-center rounded-xl ring-1",
             accent.bg,
             accent.ring,
           )}
         >
-          {industry.icon}
+          <AnimatedIcon icon={industry.icon} size={20} className={accent.text} />
         </span>
         <span
           className={cn(

@@ -9,6 +9,7 @@ import { industryAccentStyles } from "@/components/sections/industries/industry-
 import { Button } from "@/components/ui/button";
 import { GlassPanel } from "@/components/ui/glass-panel";
 import { StaggerChildren, StaggerItem } from "@/components/animations/stagger-children";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
 import { cn } from "@/lib/utils";
 
 export function IndustriesGrid() {
@@ -49,12 +50,12 @@ export function IndustriesGrid() {
                 <div className="flex items-center gap-3">
                   <span
                     className={cn(
-                      "flex h-11 w-11 items-center justify-center rounded-xl text-xl ring-1",
+                      "flex h-11 w-11 items-center justify-center rounded-xl ring-1",
                       accent.bg,
                       accent.ring,
                     )}
                   >
-                    {activeIndustry.icon}
+                    <AnimatedIcon icon={activeIndustry.icon} size={22} className={accent.text} />
                   </span>
                   <div>
                     <h3 className="font-display text-2xl font-semibold tracking-tight">
@@ -100,8 +101,8 @@ export function IndustriesGrid() {
 
       <p className="text-center text-sm text-text-muted">
         Explore all{" "}
-        <Link href="/industries/real-estate" className="text-accent-cyan hover:underline">
-          industry-specific AI pages
+        <Link href="/industries" className="text-accent-cyan hover:underline">
+          industry solutions
         </Link>{" "}
         for workflows, architecture, and ROI metrics.
       </p>

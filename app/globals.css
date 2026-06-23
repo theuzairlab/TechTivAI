@@ -12,8 +12,23 @@
   --accent-lime: #c6ff00;
   --accent-violet: #a78bfa;
   --accent-rose: #ff5f7e;
+  --accent-amber: #ffa726;
   --text-primary: #ffffff;
-  --text-muted: #8891a8;
+  --text-body: #dce6f5;
+  --text-muted: #5a6a85;
+  --text-dim: #2e3a50;
+
+  /* Surfaces & borders (dark UI) */
+  --surface-card: #0c1120;
+  --surface-elevated: #0f1729;
+  --surface-glass: rgba(255, 255, 255, 0.03);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-highlight: rgba(99, 210, 255, 0.18);
+
+  --radius-surface-sm: 8px;
+  --radius-surface-md: 14px;
+  --radius-surface-lg: 20px;
+  --radius-surface-xl: 28px;
 
   --font-display: "Clash Display", system-ui, sans-serif;
   --font-body: "Cabinet Grotesk", system-ui, sans-serif;
@@ -63,8 +78,28 @@
   --color-accent-lime: var(--accent-lime);
   --color-accent-violet: var(--accent-violet);
   --color-accent-rose: var(--accent-rose);
+  --color-accent-amber: var(--accent-amber);
   --color-text-primary: var(--text-primary);
+  --color-text-body: var(--text-body);
   --color-text-muted: var(--text-muted);
+  --color-text-dim: var(--text-dim);
+  --color-surface-card: var(--surface-card);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-glass: var(--surface-glass);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-highlight: var(--border-highlight);
+
+  --radius-surface-sm: var(--radius-surface-sm);
+  --radius-surface-md: var(--radius-surface-md);
+  --radius-surface-lg: var(--radius-surface-lg);
+  --radius-surface-xl: var(--radius-surface-xl);
+
+  --animate-fade-up: fade-up 0.8s ease both;
+  --animate-status-blink: status-blink 2s ease infinite;
+  --animate-ticker: ticker 30s linear infinite;
+  --animate-grow-bar: grow-bar 1s ease both;
+  --animate-chat-slide: chat-slide 0.3s ease;
+  --animate-typing: typing 1.4s ease infinite;
   --color-glass-border: var(--glass-border);
   --color-glass-bg: var(--glass-bg);
 
@@ -139,6 +174,67 @@
   }
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes status-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes grow-bar {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes chat-slide {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-6px);
+  }
+}
+
 @layer utilities {
   .font-display {
     font-family: var(--font-display);
@@ -176,6 +272,60 @@
       );
     background-size: 48px 48px;
   }
+
+  .text-gradient-hero {
+    background-image: linear-gradient(
+      95deg,
+      var(--accent-cyan) 0%,
+      var(--accent-violet) 50%,
+      var(--accent-lime) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-stroke-hero {
+    font-family: var(--font-accent);
+    font-style: italic;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+  }
+
+  .scroll-reveal {
+    @apply translate-y-[30px] opacity-0 transition-[opacity,transform] duration-700 ease-out;
+  }
+
+  .scroll-reveal[data-visible] {
+    @apply translate-y-0 opacity-100;
+  }
+}
+
+/* Landing route: hide default site chrome */
+body[data-landing-page="true"] > header,
+body[data-landing-page="true"] > footer {
+  display: none !important;
+}
+
+body[data-landing-page="true"] > main {
+  flex: 1 1 auto;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+}
+
+/* Landing page scrollbar */
+body[data-landing-page="true"]::-webkit-scrollbar {
+  width: 4px;
+}
+
+body[data-landing-page="true"]::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+body[data-landing-page="true"]::-webkit-scrollbar-thumb {
+  background: var(--text-dim);
+  border-radius: 2px;
 }
 
 .dark {

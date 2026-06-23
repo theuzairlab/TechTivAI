@@ -1,3 +1,15 @@
+import type { LucideIcon } from "lucide-react";
+import {
+  HeartPulse,
+  Home,
+  Landmark,
+  Laptop,
+  Megaphone,
+  Scale,
+  ShoppingCart,
+  Truck,
+} from "lucide-react";
+
 export type IndustryAccent = "cyan" | "lime" | "violet" | "rose";
 
 export type Industry = {
@@ -5,7 +17,7 @@ export type Industry = {
   name: string;
   description: string;
   features: readonly string[];
-  icon: string;
+  icon: LucideIcon;
   accent: IndustryAccent;
   metric: string;
 };
@@ -23,7 +35,7 @@ export const industries: Industry[] = [
       "Appointment scheduling",
       "AI voice receptionists",
     ],
-    icon: "🏠",
+    icon: Home,
     accent: "cyan",
     metric: "3x faster lead response",
   },
@@ -39,7 +51,7 @@ export const industries: Industry[] = [
       "Intake automation",
       "Voice assistants",
     ],
-    icon: "🏥",
+    icon: HeartPulse,
     accent: "lime",
     metric: "60% fewer no-shows",
   },
@@ -55,7 +67,7 @@ export const industries: Industry[] = [
       "Review automation",
       "AI content systems",
     ],
-    icon: "🛒",
+    icon: ShoppingCart,
     accent: "violet",
     metric: "22% cart recovery rate",
   },
@@ -70,7 +82,7 @@ export const industries: Industry[] = [
       "Scheduling AI",
       "Client support systems",
     ],
-    icon: "⚖️",
+    icon: Scale,
     accent: "rose",
     metric: "40% faster intake",
   },
@@ -85,7 +97,7 @@ export const industries: Industry[] = [
       "Lead generation",
       "CRM workflows",
     ],
-    icon: "📣",
+    icon: Megaphone,
     accent: "cyan",
     metric: "5x outreach capacity",
   },
@@ -101,7 +113,7 @@ export const industries: Industry[] = [
       "Usage analytics AI",
       "Trial conversion flows",
     ],
-    icon: "💻",
+    icon: Laptop,
     accent: "lime",
     metric: "35% churn reduction",
   },
@@ -117,7 +129,7 @@ export const industries: Industry[] = [
       "Customer notifications",
       "Operations dashboards",
     ],
-    icon: "🚚",
+    icon: Truck,
     accent: "violet",
     metric: "18% route efficiency gain",
   },
@@ -133,7 +145,7 @@ export const industries: Industry[] = [
       "KYC automation",
       "Reporting intelligence",
     ],
-    icon: "💰",
+    icon: Landmark,
     accent: "rose",
     metric: "50% faster processing",
   },
