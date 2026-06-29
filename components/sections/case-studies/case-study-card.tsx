@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const accentStyles = {
   cyan: "border-accent-cyan/40 bg-accent-cyan/10 ring-accent-cyan/30",
-  lime: "border-accent-lime/40 bg-accent-lime/10 ring-accent-lime/30",
+  lime: "border-brand-cyan/40 bg-brand-cyan/10 ring-brand-cyan/30",
   violet: "border-accent-violet/40 bg-accent-violet/10 ring-accent-violet/30",
   rose: "border-accent-rose/40 bg-accent-rose/10 ring-accent-rose/30",
 } as const;

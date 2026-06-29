@@ -175,7 +175,7 @@ export function WorkflowCanvas() {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2 text-sm text-text-muted">
-          <span className="flex h-2 w-2 rounded-full bg-accent-lime" />
+          <span className="ui-dot flex h-2 w-2 rounded-full" />
           Drag nodes to rearrange · Click run to simulate execution
         </div>
         <div className="flex gap-2">

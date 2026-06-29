@@ -19,8 +19,8 @@ export function CaseStudyChart({ className }: CaseStudyChartProps) {
     >
       <div className="mb-3 flex items-center justify-between">
         <p className="text-xs font-medium text-text-muted">Automation Analytics</p>
-        <span className="flex items-center gap-1.5 text-[10px] text-accent-lime">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-lime" />
+        <span className="flex items-center gap-1.5 text-[10px] text-brand">
+          <span className="ui-dot h-1.5 w-1.5 animate-pulse rounded-full" />
           Live
         </span>
       </div>

@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/shared/page-shell";
+import { PricingPageView } from "@/components/pages/pricing/pricing-page-view";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Dynamic AI implementation pricing with setup, maintenance, and retainer models.",
+    "Transparent AI automation pricing — Growth, Scale, and Enterprise plans with dynamic setup, maintenance, and retainer estimates powered by our AI Pricing Engine.",
 };
 
 export default function PricingPage() {
-  return (
-    <PageShell
-      title="Pricing Intelligence Engine"
-      description="Real-time project estimates based on workflow complexity, integrations, AI models, and operational volume."
-    />
-  );
+  return <PricingPageView />;
 }

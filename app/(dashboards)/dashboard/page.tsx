@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/shared/page-shell";
+import { DashboardPageView } from "@/components/pages/dashboard/dashboard-page-view";
+import { requireSession } from "@/lib/session";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -7,12 +8,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function DashboardPage() {
-  return (
-    <PageShell
-      badge="Admin — Phase 4"
-      title="Admin Dashboard"
-      description="Lead management, AI conversation logs, proposal status, and platform analytics. Protected by Better Auth in Phase 4."
-    />
-  );
+export default async function DashboardPage() {
+  const session = await requireSession();
+
+  return <DashboardPageView session={session} />;
 }

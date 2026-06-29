@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 
 const variants = {
-  default: "bg-white/10 text-text-primary border-glass-border",
+  default: "bg-surface-glass text-text-primary border-glass-border",
   cyan: "bg-accent-cyan/15 text-accent-cyan border-accent-cyan/30",
-  lime: "bg-accent-lime/15 text-accent-lime border-accent-lime/30",
+  lime: "bg-brand-cyan/15 text-brand border-brand-cyan/30",
   violet: "bg-accent-violet/15 text-accent-violet border-accent-violet/30",
   rose: "bg-accent-rose/15 text-accent-rose border-accent-rose/30",
 } as const;

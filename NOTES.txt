@@ -196,3 +196,24 @@ TASKS:
 [✅] Designed and developed the Industry page.
 [✅] Created detailed sub-industry pages with dedicated content and structure.
 
+24-Jun-2026
+[✅] Replaced the homepage with the new landing page and moved the previous version to /old-home.
+[✅] Rebranded the site with a new color system, dark/light themes, and theme persistence.
+[✅] Restructured layouts with shared Navbar and Footer, and removed duplicate landing page components.
+[✅] Updated Navbar and Footer to align with the new brand identity.
+[✅] Improved light-theme contrast and standardized semantic styling tokens.
+[✅] Added a custom mouse cursor across all public pages (desktop only).
+[✅] Built the complete /pricing page with plans, calculator, comparison table, FAQ, and CTAs.
+[✅] Added the Google Ads script globally across all NxTechnova pages.
+
+25-Jun-2026
+[✅] Built the complete /case-studies page with social proof stats, interactive client stories, implementation timelines, workflow diagrams, testimonials, and CTA.
+[✅] Created case-studies page data layer (lib/case-studies-page-data.ts) and page view following Services/Pricing patterns.
+[✅] Built the complete /contact page (Contact & Consultation) with AI onboarding path, voice AI consultation, calendar scheduling, manual proposal form, FAQ, and CTA.
+[✅] Created contact page components: contact form, booking scheduler, and contact-page-data.
+[✅] Set up PostgreSQL + Prisma 7 with Better Auth schema (User, Session, Account, Verification) and Lead model for dashboard data.
+[✅] Configured Better Auth with email/password, username login, Google OAuth, and app/api/auth/[...all] route handler.
+[✅] Built interactive /login page — two-column layout, Sign in / Create account tabs, Google OAuth button, and branded form cards.
+[✅] Protected /dashboard with proxy.ts (Next.js 16 route guard) and server-side requireSession() in dashboard layout.
+[✅] Built protected admin dashboard shell with user session display, sign out, live lead count, and command center demo.
+[✅] Pushed Prisma schema to local PostgreSQL and added db scripts (generate, migrate, push, studio). 

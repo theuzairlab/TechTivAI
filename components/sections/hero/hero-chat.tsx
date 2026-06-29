@@ -110,8 +110,8 @@ export function HeroChat({ className }: HeroChatProps) {
             <p className="text-xs text-text-muted">Automation architect</p>
           </div>
         </div>
-        <span className="flex items-center gap-2 rounded-full border border-accent-lime/30 bg-accent-lime/10 px-3 py-1 text-xs text-accent-lime">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-lime" />
+        <span className="flex items-center gap-2 rounded-full border border-brand-cyan/30 bg-brand-cyan/10 px-3 py-1 text-xs text-brand">
+          <span className="ui-dot h-1.5 w-1.5 animate-pulse rounded-full" />
           Online
         </span>
       </div>

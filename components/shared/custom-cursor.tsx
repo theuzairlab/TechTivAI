@@ -2,7 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
-export function LandingCustomCursor() {
+const interactiveSelector = "a, button, [data-cursor-target]";
+
+export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
 
@@ -18,9 +20,17 @@ export function LandingCustomCursor() {
     let ringScale = 1;
     let frameId = 0;
     let running = true;
+    let hoveredInteractive = false;
 
     const setCursorPos = (x: number, y: number) => {
-      cursor.style.transform = `translate3d(${x - 5}px, ${y - 5}px, 0)`;
+      cursor.style.transform = `translate3d(${x - 5}px, ${y - 5}px, 0) scale(${hoveredInteractive ? 2 : 1})`;
+    };
+
+    const setInteractive = (active: boolean) => {
+      if (hoveredInteractive === active) return;
+      hoveredInteractive = active;
+      ringScale = active ? 1.5 : 1;
+      setCursorPos(mx, my);
     };
 
     const tick = () => {
@@ -41,6 +51,12 @@ export function LandingCustomCursor() {
       my = event.clientY;
       setCursorPos(mx, my);
 
+      const target = event.target;
+      const isInteractive =
+        target instanceof Element &&
+        Boolean(target.closest(interactiveSelector));
+      setInteractive(isInteractive);
+
       if (rx < 0) {
         rx = mx;
         ry = my;
@@ -48,35 +64,13 @@ export function LandingCustomCursor() {
       }
     };
 
-    const interactiveSelector = "[data-cursor-target]";
-
-    const onEnter = () => {
-      ringScale = 1.5;
-      cursor.style.transform = `translate3d(${mx - 5}px, ${my - 5}px, 0) scale(2)`;
-    };
-
-    const onLeave = () => {
-      ringScale = 1;
-      cursor.style.transform = `translate3d(${mx - 5}px, ${my - 5}px, 0) scale(1)`;
-    };
-
     document.addEventListener("mousemove", onMove, { passive: true });
     frameId = window.requestAnimationFrame(tick);
-
-    const interactiveElements = document.querySelectorAll(interactiveSelector);
-    interactiveElements.forEach((element) => {
-      element.addEventListener("mouseenter", onEnter);
-      element.addEventListener("mouseleave", onLeave);
-    });
 
     return () => {
       running = false;
       document.removeEventListener("mousemove", onMove);
       window.cancelAnimationFrame(frameId);
-      interactiveElements.forEach((element) => {
-        element.removeEventListener("mouseenter", onEnter);
-        element.removeEventListener("mouseleave", onLeave);
-      });
     };
   }, []);
 
@@ -84,12 +78,12 @@ export function LandingCustomCursor() {
     <>
       <div
         ref={cursorRef}
-        className="pointer-events-none fixed top-0 left-0 z-[9999] size-2.5 rounded-full bg-accent-cyan mix-blend-screen will-change-transform"
+        className="custom-cursor-dot pointer-events-none fixed top-0 left-0 z-[9999] size-2.5 rounded-full will-change-transform"
         style={{ transform: "translate3d(-100px, -100px, 0)" }}
       />
       <div
         ref={ringRef}
-        className="pointer-events-none fixed top-0 left-0 z-[9998] size-9 rounded-full border border-accent-cyan/40 will-change-transform"
+        className="custom-cursor-ring pointer-events-none fixed top-0 left-0 z-[9998] size-9 rounded-full border-2 will-change-transform"
         style={{ transform: "translate3d(-100px, -100px, 0)" }}
       />
     </>

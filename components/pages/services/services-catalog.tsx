@@ -207,7 +207,7 @@ export function ServicesCatalog() {
                           key={metric.label}
                           className="rounded-xl border border-glass-border bg-bg-secondary/50 p-3 text-center"
                         >
-                          <p className="font-display text-xl font-bold text-accent-lime">
+                          <p className="font-display text-xl font-bold text-brand-strong">
                             {metric.value}
                           </p>
                           <p className="mt-1 text-[0.65rem] text-text-muted">{metric.label}</p>

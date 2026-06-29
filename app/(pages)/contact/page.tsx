@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/shared/page-shell";
+import { ContactPageView } from "@/components/pages/contact/contact-page-view";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact & Consultation",
   description:
-    "Book a consultation, talk to our AI consultant, or request a custom automation proposal.",
+    "Book a consultation, talk to our AI consultant, schedule a strategy call, or request a custom automation proposal.",
 };
 
 export default function ContactPage() {
-  return (
-    <PageShell
-      title="Contact & Consultation"
-      description="AI-assisted onboarding, voice consultation, manual contact forms, and strategy call booking — all in one place."
-    />
-  );
+  return <ContactPageView />;
 }

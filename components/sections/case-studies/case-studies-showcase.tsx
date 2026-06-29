@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const accentText = {
   cyan: "text-accent-cyan",
-  lime: "text-accent-lime",
+  lime: "text-brand",
   violet: "text-accent-violet",
   rose: "text-accent-rose",
 } as const;
@@ -70,8 +70,8 @@ export function CaseStudiesShowcase() {
                       {activeStudy.beforeSummary}
                     </p>
                   </div>
-                  <div className="rounded-xl border border-accent-lime/20 bg-accent-lime/5 p-4">
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-accent-lime">
+                  <div className="rounded-xl border border-brand-cyan/20 bg-brand-cyan/5 p-4">
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-brand">
                       After
                     </p>
                     <p className="text-sm leading-relaxed text-text-primary">

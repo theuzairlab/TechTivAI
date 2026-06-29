@@ -39,7 +39,7 @@ function WorkflowConnector({
 }) {
   return (
     <div className="relative flex min-w-[64px] flex-1 max-w-[88px] shrink-0 flex-col items-center justify-center self-center px-0.5 max-md:min-w-[52px]">
-      <span className="mb-4 rounded-full border border-border-highlight bg-surface-card/90 px-2.5 py-1 text-[0.62rem] font-semibold tracking-[0.08em] whitespace-nowrap text-accent-cyan uppercase backdrop-blur-sm">
+      <span className="mb-4 rounded-full border border-border-highlight bg-surface-card/90 px-2.5 py-1 text-[0.62rem] font-semibold tracking-[0.08em] whitespace-nowrap text-brand-cyan uppercase backdrop-blur-sm">
         {label}
       </span>
       <div className="relative h-px w-full overflow-visible bg-gradient-to-r from-border-subtle via-accent-cyan/35 to-border-subtle">
@@ -82,15 +82,12 @@ export function LandingWorkflowSection() {
           viewport={{ once: true, amount: 0.35 }}
           variants={containerVariants}
         >
-          <motion.div
-            variants={fadeUp}
-            className="mb-3 inline-flex items-center gap-2 rounded-full border border-border-highlight bg-accent-cyan/5 px-3.5 py-1 text-[0.7rem] font-bold tracking-[3.5px] text-accent-cyan uppercase"
-          >
+          <motion.div variants={fadeUp} className="s-label">
             Workflow Automation
           </motion.div>
           <motion.h2
             variants={fadeUp}
-            className="mb-4 font-display text-[clamp(2.2rem,4.5vw,3.8rem)] leading-[1.05] font-bold tracking-[-1.5px] text-white"
+            className="mb-4 font-display text-[clamp(2.2rem,4.5vw,3.8rem)] leading-[1.05] font-bold tracking-[-1.5px] text-text-primary"
           >
             Automate Any Process.
             <br />
@@ -118,11 +115,11 @@ export function LandingWorkflowSection() {
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute -bottom-20 left-0 size-56 rounded-full bg-accent-violet/10 blur-[90px]"
+            className="pointer-events-none absolute -bottom-20 left-0 size-56 rounded-full bg-[var(--hero-glow-accent)] blur-[90px]"
           />
 
           <div className="relative mb-14">
-            <p className="mb-6 text-center text-[0.68rem] font-bold tracking-[0.2em] text-text-dim uppercase">
+            <p className="mb-6 text-center text-[0.68rem] font-bold tracking-[0.2em] text-text-muted uppercase">
               Live pipeline preview
             </p>
 
@@ -186,13 +183,13 @@ export function LandingWorkflowSection() {
                           className={cn(
                             "relative z-[1] mx-auto mb-2.5",
                             accent === "lime"
-                              ? "text-accent-lime"
+                              ? "text-brand"
                               : accent
-                                ? "text-accent-cyan"
+                                ? "text-brand-cyan"
                                 : "text-text-muted",
                           )}
                         />
-                        <div className="relative z-[1] text-[0.8rem] font-semibold text-text-body">
+                        <div className="relative z-[1] text-[0.8rem] font-semibold text-text-primary">
                           {node.label}
                         </div>
                         <div className="relative z-[1] mt-1 text-[0.68rem] leading-snug text-text-muted">
@@ -233,16 +230,16 @@ export function LandingWorkflowSection() {
               >
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent-cyan/0 to-accent-violet/0 opacity-0 transition-opacity duration-300 group-hover:from-accent-cyan/6 group-hover:to-accent-violet/4 group-hover:opacity-100"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent-cyan/0 to-accent-lime/0 opacity-0 transition-opacity duration-300 group-hover:from-accent-cyan/6 group-hover:to-accent-lime/4 group-hover:opacity-100"
                 />
                 <div className="relative flex size-10 items-center justify-center rounded-surface-sm border border-border-subtle bg-surface-card/80">
                   <AnimatedIcon
                     icon={category.icon}
                     size={20}
-                    className="text-accent-cyan"
+                    className="text-brand-cyan"
                   />
                 </div>
-                <div className="relative mt-4 mb-1.5 text-[0.88rem] font-bold text-white">
+                <div className="relative mt-4 mb-1.5 text-[0.88rem] font-bold text-text-primary">
                   {category.title}
                 </div>
                 <div className="relative text-[0.78rem] leading-relaxed text-text-muted">

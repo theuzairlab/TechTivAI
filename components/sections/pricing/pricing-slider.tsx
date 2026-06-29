@@ -27,7 +27,7 @@ export function PricingSlider({
     <div className="space-y-2">
       <div className="flex items-center justify-between gap-3">
         <label className="text-sm font-medium text-text-primary">{label}</label>
-        <span className="text-sm tabular-nums text-accent-cyan">
+        <span className="text-sm tabular-nums text-brand-cyan">
           {value.toLocaleString()}
           {unit ? ` ${unit}` : ""}
         </span>

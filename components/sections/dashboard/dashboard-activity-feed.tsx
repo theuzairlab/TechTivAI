@@ -38,8 +38,8 @@ export function DashboardActivityFeed() {
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <p className="text-xs font-medium text-text-muted">Live Activity</p>
-        <span className="flex items-center gap-1.5 text-[10px] text-accent-lime">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-lime" />
+        <span className="flex items-center gap-1.5 text-[10px] text-brand">
+          <span className="ui-dot h-1.5 w-1.5 animate-pulse rounded-full" />
           Streaming
         </span>
       </div>

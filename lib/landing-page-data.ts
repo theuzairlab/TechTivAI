@@ -72,7 +72,7 @@ export const landingServices: LandingServiceCard[] = [
     icon: Building2,
     iconBg: "rgba(61,232,255,0.08)",
     c1: "#3de8ff",
-    c2: "#a78bfa",
+    c2: "#c6ff00",
     pills: ["Invoice AI", "HR Automation", "Approval Flows", "ERP AI Layer", "Document AI"],
   },
   {
@@ -82,9 +82,9 @@ export const landingServices: LandingServiceCard[] = [
     description:
       "AI that monitors, optimizes, and self-heals your operations in real time — predictive maintenance, anomaly detection, supply chain intelligence.",
     icon: Settings,
-    iconBg: "rgba(167,139,250,0.08)",
-    c1: "#a78bfa",
-    c2: "#ff5f7e",
+    iconBg: "rgba(61,232,255,0.08)",
+    c1: "#3de8ff",
+    c2: "#c6ff00",
     pills: ["Predictive Maintenance", "Supply Chain AI", "Anomaly Detection", "OpsBot"],
   },
   {
@@ -127,9 +127,9 @@ export const landingServices: LandingServiceCard[] = [
     description:
       "Build domain-specific language models trained on your proprietary data — legal, medical, finance, retail, manufacturing — with your brand's voice and knowledge.",
     icon: Brain,
-    iconBg: "rgba(255,167,38,0.08)",
-    c1: "#ffa726",
-    c2: "#ff5f7e",
+    iconBg: "rgba(198,255,0,0.08)",
+    c1: "#c6ff00",
+    c2: "#3de8ff",
     pills: ["Fine-Tuning GPT/LLaMA", "RAG Architecture", "Model Distillation", "Private LLM Deploy"],
   },
   {
@@ -141,7 +141,7 @@ export const landingServices: LandingServiceCard[] = [
     icon: RefreshCw,
     iconBg: "rgba(61,232,255,0.08)",
     c1: "#3de8ff",
-    c2: "#a78bfa",
+    c2: "#c6ff00",
     pills: ["n8n / Make Automation", "AI Decision Trees", "Zapier Enterprise", "Event-Driven AI"],
   },
   {
@@ -151,8 +151,8 @@ export const landingServices: LandingServiceCard[] = [
     description:
       "Full-cycle data science — from raw data pipelines to production ML models. Predictive analytics, clustering, NLP, and computer vision deployments.",
     icon: BarChart3,
-    iconBg: "rgba(167,139,250,0.08)",
-    c1: "#a78bfa",
+    iconBg: "rgba(61,232,255,0.08)",
+    c1: "#3de8ff",
     c2: "#c6ff00",
     pills: ["ML Model Development", "Data Pipelines", "Feature Engineering", "MLOps"],
   },
@@ -165,7 +165,7 @@ export const landingServices: LandingServiceCard[] = [
     icon: Eye,
     iconBg: "rgba(61,232,255,0.08)",
     c1: "#3de8ff",
-    c2: "#ff5f7e",
+    c2: "#c6ff00",
     pills: ["Visual Inspection", "OCR & Document AI", "Object Detection", "Real-Time Video AI"],
   },
   {
@@ -175,9 +175,9 @@ export const landingServices: LandingServiceCard[] = [
     description:
       "Autonomous lead generation, AI-powered outreach bots, personalized content engines, and predictive scoring — turn your entire GTM motion into an AI-powered revenue machine.",
     icon: Rocket,
-    iconBg: "rgba(255,95,126,0.08)",
-    c1: "#ff5f7e",
-    c2: "#ffa726",
+    iconBg: "rgba(198,255,0,0.08)",
+    c1: "#c6ff00",
+    c2: "#3de8ff",
     pills: [
       "Lead Gen Agents",
       "Email AI Sequences",
@@ -206,9 +206,9 @@ export const landingServices: LandingServiceCard[] = [
 export const landingAgents = [
   { icon: Bot, bg: "rgba(61,232,255,0.1)", name: "TivAgent — Sales SDR", role: "Prospects, qualifies, books meetings autonomously", status: "LIVE" as const },
   { icon: PenLine, bg: "rgba(198,255,0,0.1)", name: "ContentBot — Writer Agent", role: "Blogs, ads, social posts at scale", status: "LIVE" as const },
-  { icon: Microscope, bg: "rgba(167,139,250,0.1)", name: "ResearchBot — Intel Agent", role: "Market research, news monitoring, summaries", status: "LIVE" as const },
-  { icon: MessageSquare, bg: "rgba(255,95,126,0.1)", name: "SupportGenie — CS Agent", role: "Tier-1 support, refunds, escalations", status: "LIVE" as const },
-  { icon: Briefcase, bg: "rgba(255,167,38,0.1)", name: "FinanceAI — CFO Agent", role: "Invoice processing, expense reports, forecasting", status: "BETA" as const },
+  { icon: Microscope, bg: "rgba(61,232,255,0.1)", name: "ResearchBot — Intel Agent", role: "Market research, news monitoring, summaries", status: "LIVE" as const },
+  { icon: MessageSquare, bg: "rgba(198,255,0,0.1)", name: "SupportGenie — CS Agent", role: "Tier-1 support, refunds, escalations", status: "LIVE" as const },
+  { icon: Briefcase, bg: "rgba(61,232,255,0.1)", name: "FinanceAI — CFO Agent", role: "Invoice processing, expense reports, forecasting", status: "BETA" as const },
   { icon: Scale, bg: "rgba(61,232,255,0.1)", name: "LegalMind — Compliance Agent", role: "Contract review, clause extraction, risk scoring", status: "BETA" as const },
   { icon: Package, bg: "rgba(198,255,0,0.1)", name: "OpsBot — Operations Agent", role: "Supply chain monitoring, vendor management", status: "LIVE" as const },
 ];

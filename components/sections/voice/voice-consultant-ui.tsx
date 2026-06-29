@@ -97,7 +97,7 @@ export function VoiceConsultantUI() {
               "h-2 w-2 rounded-full",
               callState === "idle" && "bg-text-muted/40",
               callState === "connecting" && "animate-pulse bg-accent-cyan",
-              callState === "listening" && "animate-pulse bg-accent-lime",
+              callState === "listening" && "animate-pulse bg-ui-dot",
               callState === "speaking" && "animate-pulse bg-accent-cyan",
               callState === "ended" && "bg-accent-rose",
             )}

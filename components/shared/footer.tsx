@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { navLinks, siteConfig } from "@/lib/site";
-import { Button } from "@/components/ui/button";
 
 const footerLinks = [
   {
@@ -32,29 +31,32 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-glass-border bg-bg-secondary/50">
-      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+    <footer className="relative z-[1] border-t border-border-subtle bg-bg-primary">
+      <div className="mx-auto max-w-7xl px-[5%] py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="space-y-5">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-cyan/15 text-sm font-bold text-accent-cyan ring-1 ring-accent-cyan/30">
+            <Link href="/" className="inline-flex items-center gap-2.5 no-underline">
+              <span className="flex size-[34px] items-center justify-center rounded-lg bg-gradient-to-br from-accent-cyan to-accent-lime text-base font-bold text-on-accent">
                 T
               </span>
-              <span className="font-display text-xl font-semibold">
-                {siteConfig.name}
+              <span className="font-display text-xl font-bold tracking-[-0.5px] text-text-primary">
+                Techtiv<em className="logo-accent not-italic">AI</em>
               </span>
             </Link>
             <p className="max-w-sm text-sm leading-relaxed text-text-muted">
               {siteConfig.description}
             </p>
-            <Button href="/discovery" size="sm">
+            <Link
+              href="/discovery"
+              className="inline-flex h-9 items-center rounded-xl bg-accent-lime px-4 text-sm font-bold text-on-accent shadow-[0_0_20px_var(--shadow-lime)] transition-[box-shadow,transform,background] duration-200 hover:-translate-y-px hover:bg-accent-cyan hover:shadow-[0_0_32px_var(--shadow-cyan)]"
+            >
               Start AI Discovery
-            </Button>
+            </Link>
           </div>
 
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h3 className="mb-4 text-sm font-semibold text-text-primary">
+              <h3 className="mb-4 font-display text-sm font-bold text-text-primary">
                 {group.title}
               </h3>
               <ul className="space-y-3">
@@ -62,7 +64,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-text-muted transition-colors hover:text-accent-cyan"
+                      className="text-sm text-text-muted transition-colors duration-200 link-brand"
                     >
                       {link.label}
                     </Link>
@@ -73,7 +75,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-glass-border pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-border-subtle pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-text-muted">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>

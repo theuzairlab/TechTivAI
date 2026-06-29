@@ -45,13 +45,13 @@ export function DiscoveryAssistant({ step, showResults }: DiscoveryAssistantProp
   return (
     <GlassPanel variant="elevated" className="flex h-full flex-col overflow-hidden">
       <div className="flex items-center gap-3 border-b border-glass-border px-5 py-4">
-        <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-accent-cyan to-accent-violet text-white">
+        <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-accent-cyan to-accent-lime text-on-accent">
           <Bot size={18} strokeWidth={1.75} aria-hidden />
         </div>
         <div>
           <p className="font-display text-sm font-semibold text-text-primary">TivAI Consultant</p>
           <p className="flex items-center gap-1.5 text-xs text-text-muted">
-            <span className="size-1.5 animate-status-blink rounded-full bg-accent-lime" />
+            <span className="ui-dot size-1.5 animate-status-blink rounded-full" />
             Live discovery session
           </p>
         </div>

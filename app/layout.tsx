@@ -2,13 +2,15 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource/instrument-serif/400.css";
 import "@fontsource/instrument-serif/400-italic.css";
 import "./globals.css";
-import { Navbar } from "@/components/shared/navbar";
-import { Footer } from "@/components/shared/footer";
+import { ThemeProvider } from "@/components/shared/theme-provider";
 import { siteConfig } from "@/lib/site";
+import { THEME_STORAGE_KEY } from "@/lib/theme";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+
+const themeInitScript = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");if(t==="light"){document.body.classList.add("light-mode");document.documentElement.style.colorScheme="light";}}catch(e){}})();`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -46,8 +48,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#04060d",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f0fff4" },
+    { media: "(prefers-color-scheme: dark)", color: "#030d06" },
+  ],
+  colorScheme: "dark light",
 };
 
 export default function RootLayout({
@@ -56,8 +61,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full", "font-sans", geist.variable)}>
+    <html lang="en" className={cn("h-full", "font-sans", geist.variable)} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <link
           href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap"
           rel="stylesheet"
@@ -68,9 +74,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-body antialiased">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

@@ -96,7 +96,7 @@ export function PageHero({
                 <AnimatedIcon
                   icon={feature.icon}
                   size={14}
-                  className="text-accent-cyan"
+                  className="text-brand-cyan"
                   interactive={false}
                 />
                 {feature.label}

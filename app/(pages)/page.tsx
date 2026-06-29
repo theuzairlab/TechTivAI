@@ -8,6 +8,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function LandingPageRoute() {
+export default function HomePage() {
   return <LandingPage />;
 }

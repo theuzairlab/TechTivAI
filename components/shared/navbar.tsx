@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { navLinks, siteConfig } from "@/lib/site";
-import { Button } from "@/components/ui/button";
 import { MobileMenu } from "@/components/shared/mobile-menu";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -33,19 +33,18 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-          scrolled
-            ? "border-b border-glass-border bg-bg-primary/80 backdrop-blur-xl"
-            : "bg-transparent",
+          "fixed inset-x-0 top-0 z-50 h-[68px] border-b border-border-subtle transition-all duration-300",
+          "bg-nav-bg backdrop-blur-3xl backdrop-saturate-[180%]",
+          scrolled && "shadow-[0_2px_20px_var(--shadow-cyan)]",
         )}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:h-[4.5rem] sm:px-6 lg:px-8">
-          <Link href="/" className="group flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-cyan/15 text-sm font-bold text-accent-cyan ring-1 ring-accent-cyan/30">
+        <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-[5%]">
+          <Link href="/" className="group flex items-center gap-2.5 no-underline">
+            <span className="flex size-[34px] items-center justify-center rounded-lg bg-gradient-to-br from-accent-cyan to-accent-lime text-base font-bold text-on-accent">
               T
             </span>
-            <span className="font-display text-lg font-semibold tracking-tight text-text-primary group-hover:text-accent-cyan transition-colors">
-              {siteConfig.name}
+            <span className="font-display text-xl font-bold tracking-[-0.5px] text-text-primary">
+              Techtiv<em className="logo-accent not-italic">AI</em>
             </span>
           </Link>
 
@@ -54,7 +53,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-full px-4 py-2 text-sm text-text-muted transition-colors hover:text-text-primary"
+                className="nav-link rounded-md px-3.5 py-[7px] text-[0.85rem] font-medium text-text-muted no-underline"
               >
                 {link.label}
               </Link>
@@ -62,25 +61,35 @@ export function Navbar() {
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
-            <Button href="/contact" variant="ghost" size="sm">
-              Consult
-            </Button>
-            <Button href="/discovery" size="sm">
-              Get Blueprint
-            </Button>
+            <div className="flex items-center gap-[7px] text-xs text-text-muted">
+              <div className="ui-dot size-[7px] animate-status-blink rounded-full" />
+              All Systems Live
+            </div>
+            <ThemeToggle />
+            <Link
+              href="/discovery"
+              className="rounded-[7px] bg-accent-lime px-5 py-[9px] text-[0.82rem] font-bold text-on-accent no-underline shadow-[0_0_20px_var(--shadow-lime)] transition-[box-shadow,transform,background] duration-200 hover:-translate-y-px hover:bg-accent-cyan hover:shadow-[0_0_32px_var(--shadow-cyan)]"
+            >
+              Start Building →
+            </Link>
           </div>
 
-          <button
-            type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-glass-border text-text-primary md:hidden"
-            aria-label="Open menu"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(true)}
-          >
-            <MenuIcon />
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border-subtle text-text-primary"
+              aria-label="Open menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(true)}
+            >
+              <MenuIcon />
+            </button>
+          </div>
         </div>
       </motion.header>
+
+      <div className="h-[68px] shrink-0" aria-hidden />
 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
     </>

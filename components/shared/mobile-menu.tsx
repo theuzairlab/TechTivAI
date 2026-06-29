@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "@/lib/site";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -53,7 +54,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                   <Link
                     href={link.href}
                     onClick={onClose}
-                    className="block rounded-xl px-4 py-3 text-base text-text-muted transition-colors hover:bg-white/5 hover:text-text-primary"
+                    className="block rounded-xl px-4 py-3 text-base text-text-muted transition-colors nav-link hover:rounded-xl"
                   >
                     {link.label}
                   </Link>
@@ -62,6 +63,10 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             </ul>
 
             <div className="mt-auto flex flex-col gap-3 pt-8">
+              <div className="flex items-center justify-between rounded-xl border border-border-subtle px-4 py-3">
+                <span className="text-sm text-text-muted">Theme</span>
+                <ThemeToggle />
+              </div>
               <Button href="/discovery" size="lg" onClick={onClose}>
                 Get Your AI Blueprint
               </Button>

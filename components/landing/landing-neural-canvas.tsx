@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { Theme } from "@/lib/theme";
 
 type Node = {
   x: number;
@@ -9,6 +10,13 @@ type Node = {
   vy: number;
   r: number;
 };
+
+function getNeuralColors(isLight: boolean) {
+  return {
+    node: isLight ? "rgba(0, 110, 138, 0.75)" : "rgba(198, 255, 0, 0.8)",
+    lineBase: isLight ? 0.28 : 0.25,
+  };
+}
 
 export function LandingNeuralCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -23,6 +31,8 @@ export function LandingNeuralCanvas() {
     let width = 0;
     let height = 0;
     let frameId = 0;
+    let isLight = document.body.classList.contains("light-mode");
+    let colors = getNeuralColors(isLight);
 
     const nodes: Node[] = Array.from({ length: 60 }, () => ({
       x: 0,
@@ -31,6 +41,12 @@ export function LandingNeuralCanvas() {
       vy: (Math.random() - 0.5) * 0.4,
       r: 1.5 + Math.random() * 2,
     }));
+
+    const onThemeChange = (event: Event) => {
+      const detail = (event as CustomEvent<Theme>).detail;
+      isLight = detail === "light";
+      colors = getNeuralColors(isLight);
+    };
 
     const resize = () => {
       width = canvas.width = window.innerWidth;
@@ -52,7 +68,7 @@ export function LandingNeuralCanvas() {
 
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(61,232,255,0.6)";
+        ctx.fillStyle = colors.node;
         ctx.fill();
       });
 
@@ -65,7 +81,7 @@ export function LandingNeuralCanvas() {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(61,232,255,${0.15 * (1 - distance / 160)})`;
+            ctx.strokeStyle = `rgba(61,232,255,${colors.lineBase * (1 - distance / 160)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -77,10 +93,12 @@ export function LandingNeuralCanvas() {
 
     resize();
     window.addEventListener("resize", resize);
+    window.addEventListener("techtiv-theme-change", onThemeChange);
     frameId = window.requestAnimationFrame(draw);
 
     return () => {
       window.removeEventListener("resize", resize);
+      window.removeEventListener("techtiv-theme-change", onThemeChange);
       window.cancelAnimationFrame(frameId);
     };
   }, []);
@@ -89,7 +107,7 @@ export function LandingNeuralCanvas() {
     <canvas
       ref={canvasRef}
       id="neural"
-      className="pointer-events-none fixed inset-0 z-0 opacity-25"
+      className="pointer-events-none fixed inset-0 z-0 opacity-50"
     />
   );
 }

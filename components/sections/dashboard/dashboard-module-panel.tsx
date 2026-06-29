@@ -42,7 +42,7 @@ export function DashboardModulePanel({ moduleId }: DashboardModulePanelProps) {
                     lead.status === "Hot"
                       ? "text-accent-rose"
                       : lead.status === "Warm"
-                        ? "text-accent-lime"
+                        ? "text-brand"
                         : "text-text-muted",
                   )}
                 >
@@ -71,7 +71,7 @@ export function DashboardModulePanel({ moduleId }: DashboardModulePanelProps) {
                   className={cn(
                     "rounded-full px-2 py-0.5 text-[10px] font-medium",
                     convo.status === "active"
-                      ? "bg-accent-lime/15 text-accent-lime"
+                      ? "bg-brand-cyan/15 text-brand"
                       : "bg-accent-cyan/15 text-accent-cyan",
                   )}
                 >
@@ -121,7 +121,7 @@ export function DashboardModulePanel({ moduleId }: DashboardModulePanelProps) {
                   className={cn(
                     "h-2 w-2 rounded-full",
                     log.status === "running"
-                      ? "animate-pulse bg-accent-lime"
+                      ? "animate-pulse bg-ui-dot"
                       : "bg-accent-cyan",
                   )}
                 />

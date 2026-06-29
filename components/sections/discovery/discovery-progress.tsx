@@ -27,7 +27,7 @@ export function DiscoveryProgress({
 
       <div className="h-1.5 overflow-hidden rounded-full bg-bg-secondary">
         <motion.div
-          className="h-full rounded-full bg-linear-to-r from-accent-cyan to-accent-violet"
+          className="h-full rounded-full bg-linear-to-r from-accent-cyan to-accent-lime"
           initial={false}
           animate={{ width: `${progress}%` }}
           transition={{ duration: 0.5, ease: "easeOut" }}

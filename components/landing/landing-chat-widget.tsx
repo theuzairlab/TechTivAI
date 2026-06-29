@@ -90,13 +90,13 @@ export function LandingChatWidget() {
           open ? "flex animate-chat-slide" : "hidden",
         )}
       >
-        <div className="flex items-center gap-3 border-b border-border-subtle bg-gradient-to-br from-accent-cyan/12 to-accent-violet/10 px-5 py-[18px]">
-          <div className="flex size-9 items-center justify-center rounded-[10px] bg-gradient-to-br from-accent-cyan to-accent-violet text-white">
+        <div className="flex items-center gap-3 border-b border-border-subtle bg-gradient-to-br from-accent-cyan/12 to-accent-lime/10 px-5 py-[18px]">
+          <div className="flex size-9 items-center justify-center rounded-[10px] bg-gradient-to-br from-accent-cyan to-accent-lime text-on-accent">
             <Bot size={18} strokeWidth={1.75} aria-hidden />
           </div>
           <div className="flex-1">
-            <div className="text-[0.9rem] font-bold text-white">TivAI Assistant</div>
-            <div className="flex items-center gap-1.5 text-[0.72rem] text-text-muted before:size-1.5 before:rounded-full before:bg-accent-lime before:content-['']">
+            <div className="text-[0.9rem] font-bold text-text-primary">TivAI Assistant</div>
+            <div className="flex items-center gap-1.5 text-[0.72rem] text-text-muted before:size-1.5 before:rounded-full before:bg-ui-dot before:content-['']">
               Online — Powered by TechTivAI
             </div>
           </div>
@@ -128,7 +128,7 @@ export function LandingChatWidget() {
                   "rounded-[14px] px-4 py-3 text-[0.85rem] leading-relaxed",
                   message.role === "ai"
                     ? "rounded-bl rounded-br-[14px] rounded-tl-[14px] rounded-tr-[14px] bg-surface-elevated text-text-body"
-                    : "rounded-bl-[14px] rounded-br rounded-tl-[14px] rounded-tr-[14px] bg-gradient-to-br from-accent-cyan to-accent-violet text-white",
+                    : "rounded-bl-[14px] rounded-br rounded-tl-[14px] rounded-tr-[14px] bg-gradient-to-br from-accent-cyan to-accent-lime text-on-accent",
                 )}
               >
                 {message.text}
@@ -167,7 +167,7 @@ export function LandingChatWidget() {
               <button
                 key={action}
                 type="button"
-                className="cursor-pointer whitespace-nowrap rounded-full border border-border-subtle bg-surface-elevated px-[11px] py-[5px] text-[0.72rem] font-medium text-text-muted transition-all duration-200 hover:border-border-highlight hover:text-accent-cyan"
+                className="cursor-pointer whitespace-nowrap rounded-full border border-border-subtle bg-surface-elevated px-[11px] py-[5px] text-[0.72rem] font-medium text-text-muted transition-all duration-200 hover:border-border-highlight hover:text-brand-cyan"
                 onClick={() => sendMessage(action)}
                 data-cursor-target
               >
@@ -195,7 +195,7 @@ export function LandingChatWidget() {
           />
           <button
             type="button"
-            className="flex size-[38px] cursor-pointer items-center justify-center rounded-[10px] border-none bg-accent-cyan text-black transition-transform duration-200 hover:scale-105"
+            className="flex size-[38px] cursor-pointer items-center justify-center rounded-[10px] border-none bg-accent-lime text-on-accent transition-transform duration-200 hover:scale-105 hover:bg-accent-cyan"
             onClick={() => sendMessage(input)}
             aria-label="Send message"
             data-cursor-target
@@ -207,7 +207,7 @@ export function LandingChatWidget() {
 
       <button
         type="button"
-        className="flex size-[58px] cursor-pointer items-center justify-center rounded-full border-none bg-gradient-to-br from-accent-cyan to-accent-violet text-white shadow-[0_8px_32px_rgba(61,232,255,0.35)] transition-[transform,box-shadow] duration-200 hover:scale-[1.08] hover:shadow-[0_12px_40px_rgba(61,232,255,0.5)]"
+        className="flex size-[58px] cursor-pointer items-center justify-center rounded-full border-none bg-gradient-to-br from-accent-cyan to-accent-lime text-on-accent shadow-[0_8px_32px_var(--shadow-cyan)] transition-[transform,box-shadow] duration-200 hover:scale-[1.08] hover:shadow-[0_12px_40px_var(--shadow-lime)]"
         onClick={() => setOpen((value) => !value)}
         aria-label={open ? "Close chat" : "Open chat"}
         data-cursor-target
@@ -215,7 +215,7 @@ export function LandingChatWidget() {
         {open ? (
           <X size={22} strokeWidth={2} />
         ) : (
-          <AnimatedIcon icon={Bot} size={24} className="text-white" interactive={false} />
+          <AnimatedIcon icon={Bot} size={24} className="text-on-accent" interactive={false} />
         )}
       </button>
     </div>

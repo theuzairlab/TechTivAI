@@ -73,11 +73,11 @@ export function WorkflowNodeCard({
 
         {executed && isRunning ? (
           <motion.div
-            className="mt-2 flex items-center gap-1.5 text-[10px] text-accent-lime"
+            className="mt-2 flex items-center gap-1.5 text-[10px] text-brand"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-lime" />
+            <span className="ui-dot h-1.5 w-1.5 rounded-full" />
             Executed
           </motion.div>
         ) : null}

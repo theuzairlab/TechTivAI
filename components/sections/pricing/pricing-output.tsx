@@ -36,7 +36,7 @@ function PriceRow({
         animate={{ opacity: 1, y: 0 }}
         className={cn(
           "font-display text-lg font-semibold tabular-nums",
-          highlight ? "text-accent-cyan" : "text-text-primary",
+          highlight ? "text-brand-cyan" : "text-text-primary",
         )}
       >
         {formatCurrency(value)}
@@ -50,7 +50,7 @@ export function PricingOutput({ result }: PricingOutputProps) {
   return (
     <GlassPanel variant="elevated" className="p-6 sm:p-8">
       <div className="mb-6 space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-accent-lime">
+        <p className="text-xs font-semibold uppercase tracking-wide text-brand">
           Live Estimate
         </p>
         <h3 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">

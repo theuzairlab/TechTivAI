@@ -26,14 +26,14 @@ export function DashboardDemo() {
       <div className="flex items-center gap-3 border-b border-glass-border bg-bg-secondary/60 px-4 py-3 sm:px-5">
         <div className="flex gap-1.5">
           <span className="h-3 w-3 rounded-full bg-accent-rose/80" />
-          <span className="h-3 w-3 rounded-full bg-accent-lime/80" />
+          <span className="ui-dot h-3 w-3 rounded-full opacity-80" />
           <span className="h-3 w-3 rounded-full bg-accent-cyan/80" />
         </div>
         <p className="text-xs font-medium text-text-muted">
           TechTivAI Command Center
         </p>
-        <span className="ml-auto flex items-center gap-1.5 text-[10px] text-accent-lime">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-lime" />
+        <span className="ml-auto flex items-center gap-1.5 text-[10px] text-brand">
+          <span className="ui-dot h-1.5 w-1.5 animate-pulse rounded-full" />
           Live
         </span>
       </div>
@@ -82,7 +82,7 @@ export function DashboardDemo() {
                   <p className="text-[10px] text-text-muted sm:text-xs">
                     {stat.label}
                   </p>
-                  <span className="text-[10px] font-medium text-accent-lime">
+                  <span className="text-[10px] font-medium text-brand">
                     {stat.trend}
                   </span>
                 </div>

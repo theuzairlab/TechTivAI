@@ -63,7 +63,7 @@ export function VoiceAvatar({ state }: VoiceAvatarProps) {
           </span>
           {state === "listening" ? (
             <motion.span
-              className="h-1.5 w-1.5 rounded-full bg-accent-lime"
+              className="ui-dot h-1.5 w-1.5 rounded-full"
               animate={{ opacity: [1, 0.3, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             />

@@ -10,7 +10,7 @@ import { CaseStudiesSection } from "@/components/sections/case-studies/case-stud
 import { DashboardSection } from "@/components/sections/dashboard/dashboard-section";
 import { CtaSection } from "@/components/sections/cta/cta-section";
 
-export default function HomePage() {
+export default function LandingPage() {
   return (
     <>
       <HeroSection />

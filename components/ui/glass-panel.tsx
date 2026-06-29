@@ -8,7 +8,7 @@ const variantStyles = {
   default: "border-glass-border bg-glass-bg backdrop-blur-xl",
   elevated:
     "border-glass-border bg-bg-secondary/90 shadow-glow-cyan backdrop-blur-2xl",
-  subtle: "border-glass-border/50 bg-white/[0.03] backdrop-blur-md",
+  subtle: "border-glass-border/50 bg-surface-glass backdrop-blur-md",
 } as const;
 
 export function GlassPanel({
