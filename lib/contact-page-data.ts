@@ -136,28 +136,3 @@ export const contactFaqs = [
       "Bring context on your team size, current tools (CRM, phone, email), biggest operational bottlenecks, and any automation you've already tried. Running AI Discovery first gives us a head start.",
   },
 ] as const;
-
-/** Mock availability — weekdays over the next two weeks */
-export function getAvailableDates(): Date[] {
-  const dates: Date[] = [];
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  for (let i = 1; i <= 14; i++) {
-    const date = new Date(today);
-    date.setDate(today.getDate() + i);
-    const day = date.getDay();
-    if (day !== 0 && day !== 6) dates.push(date);
-  }
-
-  return dates;
-}
-
-export const timeSlots = [
-  "9:00 AM",
-  "10:30 AM",
-  "12:00 PM",
-  "1:30 PM",
-  "3:00 PM",
-  "4:30 PM",
-] as const;

@@ -217,3 +217,58 @@ TASKS:
 [✅] Protected /dashboard with proxy.ts (Next.js 16 route guard) and server-side requireSession() in dashboard layout.
 [✅] Built protected admin dashboard shell with user session display, sign out, live lead count, and command center demo.
 [✅] Pushed Prisma schema to local PostgreSQL and added db scripts (generate, migrate, push, studio). 
+
+
+29-Jun-2026
+[✅] Set up the production database, completed migrations, and resolved production database issues.
+[✅] Connected the live production database to the backend server.
+[✅] Configured the live production environment and verified website-to-database connectivity.
+[✅] Configured Google OAuth for the live production website.
+[✅] Resolved NxtFlight production runtime issues and restored the application.
+[✅] Configured and validated production environment variables for Vercel, backend server, and database connectivity.
+
+30-Jun-2026
+[✅] Completed Phase 2 data pipe — POST /api/leads (Zod validation), GET /api/leads (admin-only), PATCH /api/leads/[id] (status updates).
+[✅] Extended Prisma Lead model with discoveryAnswers and metadata JSON fields; pushed schema to local PostgreSQL.
+[✅] Added lib/leads.ts (schemas, source/status labels), lib/leads-client.ts (submitLead helper), lib/leads-api.ts (admin API guard).
+[✅] Wired contact form → POST /api/leads (source: contact_form) with budget stored in metadata.
+[✅] Wired booking scheduler → POST /api/leads (source: booking) with date/time/timezone in metadata.
+[✅] Wired discovery wizard results → lead capture form (name + email) saves source: discovery with answers + ROI metadata.
+[✅] Replaced /admin/leads placeholder with real leads table — status counts, inline status dropdown, expandable details (message, discovery JSON, metadata).
+[✅] Updated admin overview — total leads + new leads counts; removed Phase 2 placeholder panel.
+[✅] Installed zod; verified production build passes.
+
+
+1-July-2026
+[✅] Created admin/leads page with proper stats updates and submit reports/notes.
+[✅] Created Notifications system for admin panel.
+[✅] Integrated Calendly API in contact page.
+[✅] Created API endpoints for Calendly.
+[✅] Created APIs for Notifications system.
+[✅] Tested all the endpoints and UI tasks.
+
+2-July-2026
+[✅] Rebuilt admin layout — reusable AdminSidebar in layout, AdminHeader, shared AdminShell (sidebar + header + main).
+[✅] Added admin nav config (lib/admin-nav.ts) with new-leads badge on Leads item.
+[✅] Rebuilt /admin/leads UI — master–detail layout, search/filters, readable discovery + metadata (no raw JSON).
+[✅] Simplified leads admin to status + internal notes + delete only (removed manual add/edit lead per scope).
+[✅] Added Lead.notes field to Prisma; PATCH /api/leads/[id] accepts status and/or notes; DELETE for remove.
+[✅] Improved admin overview — recent leads feed, pipeline snapshot, stat cards linking to leads.
+[✅] Built GET /api/admin/notifications — bell dropdown, 3-min poll + refresh on tab focus.
+[✅] Fixed notification count mismatch — bell, sidebar, and overview use same NEW-leads count (removed localStorage unread logic).
+[✅] Created GET /api/booking/availability and POST /api/booking (Calendly invitee + lead save).
+[✅] Added lib/calendly.ts — resolves scheduling URL to API event type URI via PAT token.
+[✅] Booking saves meeting link, reschedule URL, cancel URL, and Calendly URIs in lead metadata for admin.
+[✅] Fixed duplicate React keys in demo time slots; fixed Calendly 400/404 when env used scheduling link instead of API URI.
+[✅] Added .env.example Calendly vars (CALENDLY_API_TOKEN, CALENDLY_EVENT_TYPE_URI, CALENDLY_TIMEZONE).
+[✅] Hit Calendly Scheduling API limit — POST /invitees returns 403 (paid plan only); availability read worked on free tier.
+[✅] Removed headless Calendly booking, Google Calendar fallback, and custom booking scheduler.
+[✅] Simplified /contact scheduling to Calendly inline iframe embed (NEXT_PUBLIC_CALENDLY_URL only).
+[✅] Removed /api/booking routes, lib/calendly.ts, lib/booking*, googleapis, and related env vars from .env.example.
+[✅] Fixed Calendly embed height in React — initInlineWidget, resize, fixed 700px container + global iframe CSS.
+[✅] Skipped saving Calendly iframe bookings to admin DB (would need paid webhooks; bookings stay in Calendly dashboard).
+[✅] Verified lead status + notes persist on /admin/leads after refresh.
+[✅] Verified notification bell and sidebar show the same count when new leads arrive.
+[ ] Verify Calendly iframe loads full calendar on /contact (hard refresh if cached).
+[ ] Confirm booking completes in Calendly widget and invite email is received.
+[ ] If production: set NEXT_PUBLIC_CALENDLY_URL on Vercel; remove unused CALENDLY_API_TOKEN vars.

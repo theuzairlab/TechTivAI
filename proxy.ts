@@ -23,15 +23,21 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  // Authenticated users on login → role-aware redirect hub (not hard-coded /dashboard)
   if (matchesPrefix(pathname, AUTH_PAGE_PREFIXES) && isAuthenticated) {
-    const callbackUrl =
-      request.nextUrl.searchParams.get("callbackUrl") ?? AUTH_ROUTES.dashboard;
-    return NextResponse.redirect(new URL(callbackUrl, request.url));
+    const redirectUrl = new URL(AUTH_ROUTES.redirect, request.url);
+    const callbackUrl = request.nextUrl.searchParams.get("callbackUrl");
+
+    if (callbackUrl) {
+      redirectUrl.searchParams.set("callbackUrl", callbackUrl);
+    }
+
+    return NextResponse.redirect(redirectUrl);
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login"],
+  matcher: ["/dashboard/:path*", "/admin", "/admin/:path*", "/login"],
 };

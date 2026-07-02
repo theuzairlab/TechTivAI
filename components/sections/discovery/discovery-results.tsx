@@ -1,19 +1,67 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 import { AnimatedMetric } from "@/components/animations/animated-metric";
 import { StaggerChildren, StaggerItem } from "@/components/animations/stagger-children";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GlassPanel } from "@/components/ui/glass-panel";
-import type { DiscoveryResult } from "@/lib/discovery";
+import { Input } from "@/components/ui/input";
+import { AnimatedIcon } from "@/components/ui/animated-icon";
+import type { DiscoveryAnswers, DiscoveryResult } from "@/lib/discovery";
+import { submitLead } from "@/lib/leads-client";
 
 type DiscoveryResultsProps = {
   result: DiscoveryResult;
+  answers: DiscoveryAnswers;
   onRestart: () => void;
 };
 
-export function DiscoveryResults({ result, onRestart }: DiscoveryResultsProps) {
+export function DiscoveryResults({
+  result,
+  answers,
+  onRestart,
+}: DiscoveryResultsProps) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSaveBlueprint = async () => {
+    if (!name.trim() || !email.trim()) return;
+
+    setSaving(true);
+    setError(null);
+
+    const submitResult = await submitLead({
+      name: name.trim(),
+      email: email.trim(),
+      interest: "proposal",
+      message: result.summary,
+      source: "discovery",
+      discoveryAnswers: answers,
+      metadata: {
+        roi: result.roi,
+        recommendations: result.recommendations.map((rec) => ({
+          id: rec.id,
+          label: rec.label,
+        })),
+      },
+    });
+
+    setSaving(false);
+
+    if (!submitResult.success) {
+      setError(submitResult.error);
+      return;
+    }
+
+    setSaved(true);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -81,10 +129,57 @@ export function DiscoveryResults({ result, onRestart }: DiscoveryResultsProps) {
         </div>
       </div>
 
+      {saved ? (
+        <GlassPanel className="flex flex-col items-center px-6 py-10 text-center">
+          <AnimatedIcon icon={CheckCircle2} size={36} className="mb-3 text-brand" />
+          <h4 className="font-display text-lg font-semibold text-text-primary">
+            Blueprint saved
+          </h4>
+          <p className="mt-2 max-w-md text-sm text-text-muted">
+            Thanks, {name.split(" ")[0]}. Our team will follow up with your
+            personalized AI blueprint within 24 hours.
+          </p>
+        </GlassPanel>
+      ) : (
+        <GlassPanel className="space-y-4 p-6">
+          <div>
+            <h4 className="font-display text-lg font-semibold text-text-primary">
+              Save your blueprint
+            </h4>
+            <p className="mt-1 text-sm text-text-muted">
+              Enter your details and we&apos;ll send your full AI recommendations
+              and ROI breakdown.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Input
+              label="Full name"
+              placeholder="Jane Smith"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Input
+              label="Work email"
+              type="email"
+              placeholder="jane@company.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          {error ? <p className="text-xs text-red-400">{error}</p> : null}
+          <Button
+            size="lg"
+            disabled={saving || !name.trim() || !email.trim()}
+            onClick={handleSaveBlueprint}
+          >
+            {saving ? "Saving…" : "Save My Blueprint"}
+          </Button>
+        </GlassPanel>
+      )}
+
       <div className="flex flex-col gap-3 border-t border-glass-border pt-6 sm:flex-row sm:flex-wrap">
-        <Button href="/discovery" size="lg">
-          Get Full AI Blueprint
-        </Button>
         <Button href="/contact" variant="secondary" size="lg">
           Book Strategy Call
         </Button>
@@ -92,10 +187,6 @@ export function DiscoveryResults({ result, onRestart }: DiscoveryResultsProps) {
           Start Over
         </Button>
       </div>
-
-      <p className="text-center text-xs text-text-muted sm:text-left">
-        Demo estimates — live AI recommendations connect in Phase 3
-      </p>
     </motion.div>
   );
 }

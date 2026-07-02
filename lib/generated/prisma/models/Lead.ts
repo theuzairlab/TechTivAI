@@ -33,6 +33,7 @@ export type LeadMinAggregateOutputType = {
   industry: string | null
   interest: string | null
   message: string | null
+  notes: string | null
   status: $Enums.LeadStatus | null
   source: string | null
   userId: string | null
@@ -49,6 +50,7 @@ export type LeadMaxAggregateOutputType = {
   industry: string | null
   interest: string | null
   message: string | null
+  notes: string | null
   status: $Enums.LeadStatus | null
   source: string | null
   userId: string | null
@@ -65,8 +67,11 @@ export type LeadCountAggregateOutputType = {
   industry: number
   interest: number
   message: number
+  notes: number
   status: number
   source: number
+  discoveryAnswers: number
+  metadata: number
   userId: number
   createdAt: number
   updatedAt: number
@@ -83,6 +88,7 @@ export type LeadMinAggregateInputType = {
   industry?: true
   interest?: true
   message?: true
+  notes?: true
   status?: true
   source?: true
   userId?: true
@@ -99,6 +105,7 @@ export type LeadMaxAggregateInputType = {
   industry?: true
   interest?: true
   message?: true
+  notes?: true
   status?: true
   source?: true
   userId?: true
@@ -115,8 +122,11 @@ export type LeadCountAggregateInputType = {
   industry?: true
   interest?: true
   message?: true
+  notes?: true
   status?: true
   source?: true
+  discoveryAnswers?: true
+  metadata?: true
   userId?: true
   createdAt?: true
   updatedAt?: true
@@ -204,8 +214,11 @@ export type LeadGroupByOutputType = {
   industry: string | null
   interest: string | null
   message: string | null
+  notes: string | null
   status: $Enums.LeadStatus
   source: string
+  discoveryAnswers: runtime.JsonValue | null
+  metadata: runtime.JsonValue | null
   userId: string | null
   createdAt: Date
   updatedAt: Date
@@ -241,8 +254,11 @@ export type LeadWhereInput = {
   industry?: Prisma.StringNullableFilter<"Lead"> | string | null
   interest?: Prisma.StringNullableFilter<"Lead"> | string | null
   message?: Prisma.StringNullableFilter<"Lead"> | string | null
+  notes?: Prisma.StringNullableFilter<"Lead"> | string | null
   status?: Prisma.EnumLeadStatusFilter<"Lead"> | $Enums.LeadStatus
   source?: Prisma.StringFilter<"Lead"> | string
+  discoveryAnswers?: Prisma.JsonNullableFilter<"Lead">
+  metadata?: Prisma.JsonNullableFilter<"Lead">
   userId?: Prisma.StringNullableFilter<"Lead"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
@@ -258,8 +274,11 @@ export type LeadOrderByWithRelationInput = {
   industry?: Prisma.SortOrderInput | Prisma.SortOrder
   interest?: Prisma.SortOrderInput | Prisma.SortOrder
   message?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   source?: Prisma.SortOrder
+  discoveryAnswers?: Prisma.SortOrderInput | Prisma.SortOrder
+  metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -278,8 +297,11 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
   industry?: Prisma.StringNullableFilter<"Lead"> | string | null
   interest?: Prisma.StringNullableFilter<"Lead"> | string | null
   message?: Prisma.StringNullableFilter<"Lead"> | string | null
+  notes?: Prisma.StringNullableFilter<"Lead"> | string | null
   status?: Prisma.EnumLeadStatusFilter<"Lead"> | $Enums.LeadStatus
   source?: Prisma.StringFilter<"Lead"> | string
+  discoveryAnswers?: Prisma.JsonNullableFilter<"Lead">
+  metadata?: Prisma.JsonNullableFilter<"Lead">
   userId?: Prisma.StringNullableFilter<"Lead"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
@@ -295,8 +317,11 @@ export type LeadOrderByWithAggregationInput = {
   industry?: Prisma.SortOrderInput | Prisma.SortOrder
   interest?: Prisma.SortOrderInput | Prisma.SortOrder
   message?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   source?: Prisma.SortOrder
+  discoveryAnswers?: Prisma.SortOrderInput | Prisma.SortOrder
+  metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -317,8 +342,11 @@ export type LeadScalarWhereWithAggregatesInput = {
   industry?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   interest?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   message?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  notes?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   status?: Prisma.EnumLeadStatusWithAggregatesFilter<"Lead"> | $Enums.LeadStatus
   source?: Prisma.StringWithAggregatesFilter<"Lead"> | string
+  discoveryAnswers?: Prisma.JsonNullableWithAggregatesFilter<"Lead">
+  metadata?: Prisma.JsonNullableWithAggregatesFilter<"Lead">
   userId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Lead"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Lead"> | Date | string
@@ -333,8 +361,11 @@ export type LeadCreateInput = {
   industry?: string | null
   interest?: string | null
   message?: string | null
+  notes?: string | null
   status?: $Enums.LeadStatus
   source?: string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   user?: Prisma.UserCreateNestedOneWithoutLeadsInput
@@ -349,8 +380,11 @@ export type LeadUncheckedCreateInput = {
   industry?: string | null
   interest?: string | null
   message?: string | null
+  notes?: string | null
   status?: $Enums.LeadStatus
   source?: string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -365,8 +399,11 @@ export type LeadUpdateInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   source?: Prisma.StringFieldUpdateOperationsInput | string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneWithoutLeadsNestedInput
@@ -381,8 +418,11 @@ export type LeadUncheckedUpdateInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   source?: Prisma.StringFieldUpdateOperationsInput | string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -397,8 +437,11 @@ export type LeadCreateManyInput = {
   industry?: string | null
   interest?: string | null
   message?: string | null
+  notes?: string | null
   status?: $Enums.LeadStatus
   source?: string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -413,8 +456,11 @@ export type LeadUpdateManyMutationInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   source?: Prisma.StringFieldUpdateOperationsInput | string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -428,8 +474,11 @@ export type LeadUncheckedUpdateManyInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   source?: Prisma.StringFieldUpdateOperationsInput | string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -454,8 +503,11 @@ export type LeadCountOrderByAggregateInput = {
   industry?: Prisma.SortOrder
   interest?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   status?: Prisma.SortOrder
   source?: Prisma.SortOrder
+  discoveryAnswers?: Prisma.SortOrder
+  metadata?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -470,6 +522,7 @@ export type LeadMaxOrderByAggregateInput = {
   industry?: Prisma.SortOrder
   interest?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   status?: Prisma.SortOrder
   source?: Prisma.SortOrder
   userId?: Prisma.SortOrder
@@ -486,6 +539,7 @@ export type LeadMinOrderByAggregateInput = {
   industry?: Prisma.SortOrder
   interest?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
   status?: Prisma.SortOrder
   source?: Prisma.SortOrder
   userId?: Prisma.SortOrder
@@ -548,8 +602,11 @@ export type LeadCreateWithoutUserInput = {
   industry?: string | null
   interest?: string | null
   message?: string | null
+  notes?: string | null
   status?: $Enums.LeadStatus
   source?: string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -563,8 +620,11 @@ export type LeadUncheckedCreateWithoutUserInput = {
   industry?: string | null
   interest?: string | null
   message?: string | null
+  notes?: string | null
   status?: $Enums.LeadStatus
   source?: string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -607,8 +667,11 @@ export type LeadScalarWhereInput = {
   industry?: Prisma.StringNullableFilter<"Lead"> | string | null
   interest?: Prisma.StringNullableFilter<"Lead"> | string | null
   message?: Prisma.StringNullableFilter<"Lead"> | string | null
+  notes?: Prisma.StringNullableFilter<"Lead"> | string | null
   status?: Prisma.EnumLeadStatusFilter<"Lead"> | $Enums.LeadStatus
   source?: Prisma.StringFilter<"Lead"> | string
+  discoveryAnswers?: Prisma.JsonNullableFilter<"Lead">
+  metadata?: Prisma.JsonNullableFilter<"Lead">
   userId?: Prisma.StringNullableFilter<"Lead"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
@@ -623,8 +686,11 @@ export type LeadCreateManyUserInput = {
   industry?: string | null
   interest?: string | null
   message?: string | null
+  notes?: string | null
   status?: $Enums.LeadStatus
   source?: string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -638,8 +704,11 @@ export type LeadUpdateWithoutUserInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   source?: Prisma.StringFieldUpdateOperationsInput | string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -653,8 +722,11 @@ export type LeadUncheckedUpdateWithoutUserInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   source?: Prisma.StringFieldUpdateOperationsInput | string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -668,8 +740,11 @@ export type LeadUncheckedUpdateManyWithoutUserInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interest?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   message?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   source?: Prisma.StringFieldUpdateOperationsInput | string
+  discoveryAnswers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -685,8 +760,11 @@ export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   industry?: boolean
   interest?: boolean
   message?: boolean
+  notes?: boolean
   status?: boolean
   source?: boolean
+  discoveryAnswers?: boolean
+  metadata?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -702,8 +780,11 @@ export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   industry?: boolean
   interest?: boolean
   message?: boolean
+  notes?: boolean
   status?: boolean
   source?: boolean
+  discoveryAnswers?: boolean
+  metadata?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -719,8 +800,11 @@ export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   industry?: boolean
   interest?: boolean
   message?: boolean
+  notes?: boolean
   status?: boolean
   source?: boolean
+  discoveryAnswers?: boolean
+  metadata?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -736,14 +820,17 @@ export type LeadSelectScalar = {
   industry?: boolean
   interest?: boolean
   message?: boolean
+  notes?: boolean
   status?: boolean
   source?: boolean
+  discoveryAnswers?: boolean
+  metadata?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "company" | "phone" | "industry" | "interest" | "message" | "status" | "source" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["lead"]>
+export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "company" | "phone" | "industry" | "interest" | "message" | "notes" | "status" | "source" | "discoveryAnswers" | "metadata" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["lead"]>
 export type LeadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.Lead$userArgs<ExtArgs>
 }
@@ -768,8 +855,11 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     industry: string | null
     interest: string | null
     message: string | null
+    notes: string | null
     status: $Enums.LeadStatus
     source: string
+    discoveryAnswers: runtime.JsonValue | null
+    metadata: runtime.JsonValue | null
     userId: string | null
     createdAt: Date
     updatedAt: Date
@@ -1205,8 +1295,11 @@ export interface LeadFieldRefs {
   readonly industry: Prisma.FieldRef<"Lead", 'String'>
   readonly interest: Prisma.FieldRef<"Lead", 'String'>
   readonly message: Prisma.FieldRef<"Lead", 'String'>
+  readonly notes: Prisma.FieldRef<"Lead", 'String'>
   readonly status: Prisma.FieldRef<"Lead", 'LeadStatus'>
   readonly source: Prisma.FieldRef<"Lead", 'String'>
+  readonly discoveryAnswers: Prisma.FieldRef<"Lead", 'Json'>
+  readonly metadata: Prisma.FieldRef<"Lead", 'Json'>
   readonly userId: Prisma.FieldRef<"Lead", 'String'>
   readonly createdAt: Prisma.FieldRef<"Lead", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Lead", 'DateTime'>

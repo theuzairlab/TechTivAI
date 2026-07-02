@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { SectionWrapper } from "@/components/animations/section-wrapper";
 import { VoiceConsultantUI } from "@/components/sections/voice/voice-consultant-ui";
-import { BookingScheduler } from "@/components/pages/contact/booking-scheduler";
+import { CalendlyEmbed } from "@/components/pages/contact/calendly-embed";
 import { ContactForm } from "@/components/pages/contact/contact-form";
 import { PageHero } from "@/components/shared/page-hero";
 import { AnimatedIcon } from "@/components/ui/animated-icon";
@@ -158,8 +158,8 @@ export function ContactPageView() {
           }
           description="Pick a 30-minute slot with our AI transformation team. We'll review your goals, recommend systems, and outline next steps."
         />
-        <GlassPanel variant="elevated" className="p-6 sm:p-8">
-          <BookingScheduler />
+        <GlassPanel variant="elevated" className="overflow-visible p-4 sm:p-6">
+          <CalendlyEmbed />
         </GlassPanel>
       </SectionWrapper>
 

@@ -219,7 +219,12 @@ export function DiscoveryWizard({ onStepChange, className }: DiscoveryWizardProp
       <div className="p-5 sm:p-8">
         <AnimatePresence mode="wait" custom={direction}>
           {showResults && result ? (
-            <DiscoveryResults key="results" result={result} onRestart={restart} />
+            <DiscoveryResults
+              key="results"
+              result={result}
+              answers={answers}
+              onRestart={restart}
+            />
           ) : (
             <motion.div
               key={currentStep?.id}

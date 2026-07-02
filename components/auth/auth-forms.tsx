@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { AUTH_ROUTES } from "@/lib/auth-routes";
+import { getHomeRouteForRole } from "@/lib/roles";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -39,7 +40,12 @@ function GoogleIcon({ className }: { className?: string }) {
 export function AuthForms({ mode }: AuthFormsProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") ?? AUTH_ROUTES.defaultCallback;
+  const rawCallback = searchParams.get("callbackUrl");
+
+  const signInCallbackUrl =
+    rawCallback && rawCallback !== AUTH_ROUTES.defaultCallback
+      ? rawCallback
+      : AUTH_ROUTES.redirect;
 
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
@@ -66,13 +72,27 @@ export function AuthForms({ mode }: AuthFormsProps) {
     [isLogin],
   );
 
+  const resolveRedirect = async () => {
+    const { data } = await authClient.getSession();
+    const hasExplicitCallback =
+      rawCallback !== null && rawCallback !== AUTH_ROUTES.defaultCallback;
+
+    if (hasExplicitCallback && rawCallback) {
+      return rawCallback;
+    }
+
+    return getHomeRouteForRole(
+      (data?.user as { role?: string } | undefined)?.role,
+    );
+  };
+
   const handleGoogleSignIn = async () => {
     setError(null);
     setGoogleLoading(true);
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: callbackUrl,
+        callbackURL: signInCallbackUrl,
       });
     } catch {
       setError("Google sign-in failed. Check OAuth credentials in your environment.");
@@ -103,12 +123,12 @@ export function AuthForms({ mode }: AuthFormsProps) {
           ? await authClient.signIn.email({
               email: trimmed,
               password,
-              callbackURL: callbackUrl,
+              callbackURL: signInCallbackUrl,
             })
           : await authClient.signIn.username({
               username: trimmed,
               password,
-              callbackURL: callbackUrl,
+              callbackURL: signInCallbackUrl,
             });
 
         if (result.error) {
@@ -126,7 +146,7 @@ export function AuthForms({ mode }: AuthFormsProps) {
           password,
           name: name.trim(),
           username: username.trim(),
-          callbackURL: callbackUrl,
+          callbackURL: signInCallbackUrl,
         });
 
         if (result.error) {
@@ -135,7 +155,8 @@ export function AuthForms({ mode }: AuthFormsProps) {
         }
       }
 
-      router.push(callbackUrl);
+      const destination = await resolveRedirect();
+      router.push(destination);
       router.refresh();
     } catch {
       setError("Something went wrong. Please try again.");

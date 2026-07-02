@@ -11,6 +11,7 @@ import {
   formIndustryOptions,
   formInterestOptions,
 } from "@/lib/contact-page-data";
+import { submitLead } from "@/lib/leads-client";
 import { cn } from "@/lib/utils";
 
 type FormState = {
@@ -42,20 +43,40 @@ export function ContactForm() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const update = (field: keyof FormState, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
+    if (error) setError(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
 
     setSubmitting(true);
-    window.setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-    }, 900);
+    setError(null);
+
+    const result = await submitLead({
+      name: form.name.trim(),
+      email: form.email.trim(),
+      company: form.company.trim(),
+      phone: form.phone.trim(),
+      industry: form.industry,
+      interest: form.interest,
+      budget: form.budget,
+      message: form.message.trim(),
+      source: "contact_form",
+    });
+
+    setSubmitting(false);
+
+    if (!result.success) {
+      setError(result.error);
+      return;
+    }
+
+    setSubmitted(true);
   };
 
   return (
@@ -208,7 +229,11 @@ export function ContactForm() {
             <p className="text-xs text-text-muted">
               We respond within 24 hours · No spam, ever
             </p>
-            <Button type="submit" size="lg" disabled={submitting} className="sm:min-w-[200px]">
+            <div className="flex flex-col items-end gap-2">
+              {error ? (
+                <p className="text-xs text-red-400">{error}</p>
+              ) : null}
+              <Button type="submit" size="lg" disabled={submitting} className="sm:min-w-[200px]">
               {submitting ? (
                 "Sending…"
               ) : (
@@ -218,6 +243,7 @@ export function ContactForm() {
                 </>
               )}
             </Button>
+            </div>
           </div>
         </motion.form>
       )}

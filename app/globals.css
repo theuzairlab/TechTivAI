@@ -679,3 +679,10 @@ body[data-landing-page="true"] main {
   margin: 0;
   max-width: none;
 }
+
+/* Calendly inline embed — iframe needs explicit height in SPAs */
+.calendly-inline-widget,
+.calendly-inline-widget iframe {
+  min-height: 700px;
+  width: 100%;
+}

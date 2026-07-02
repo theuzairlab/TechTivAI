@@ -67,14 +67,14 @@ export function AuthPanel({ initialTab = "login" }: AuthPanelProps) {
             </Link>
 
             <div className="mt-14 max-w-md">
-              <p className="s-label">Admin command center</p>
+              <p className="s-label">Platform access</p>
               <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight text-text-primary xl:text-5xl">
-                Your AI operations{" "}
-                <span className="text-gradient-cyan">hub</span>
+                Your AI transformation{" "}
+                <span className="text-gradient-cyan">portal</span>
               </h1>
               <p className="mt-4 text-base leading-relaxed text-text-muted">
-                Secure access to lead management, AI conversation logs, proposal
-                generation, workflow monitoring, and platform analytics.
+                Sign in to track blueprints, proposals, and consultations. Team
+                members with admin access use the internal command center.
               </p>
             </div>
 
