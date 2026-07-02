@@ -2,6 +2,8 @@ import { AdminShell } from "@/components/dashboard/admin-shell";
 import { requireAdminSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminLayout({
   children,
 }: Readonly<{
