@@ -251,7 +251,7 @@ TASKS:
 [✅] Rebuilt admin layout — reusable AdminSidebar in layout, AdminHeader, shared AdminShell (sidebar + header + main).
 [✅] Added admin nav config (lib/admin-nav.ts) with new-leads badge on Leads item.
 [✅] Rebuilt /admin/leads UI — master–detail layout, search/filters, readable discovery + metadata (no raw JSON).
-[✅] Simplified leads admin to status + internal notes + delete only (removed manual add/edit lead per scope).
+[✅] Simplified leads admin to status + internal notes + delete only.
 [✅] Added Lead.notes field to Prisma; PATCH /api/leads/[id] accepts status and/or notes; DELETE for remove.
 [✅] Improved admin overview — recent leads feed, pipeline snapshot, stat cards linking to leads.
 [✅] Built GET /api/admin/notifications — bell dropdown, 3-min poll + refresh on tab focus.
@@ -269,6 +269,5 @@ TASKS:
 [✅] Skipped saving Calendly iframe bookings to admin DB (would need paid webhooks; bookings stay in Calendly dashboard).
 [✅] Verified lead status + notes persist on /admin/leads after refresh.
 [✅] Verified notification bell and sidebar show the same count when new leads arrive.
-[ ] Verify Calendly iframe loads full calendar on /contact (hard refresh if cached).
-[ ] Confirm booking completes in Calendly widget and invite email is received.
-[ ] If production: set NEXT_PUBLIC_CALENDLY_URL on Vercel; remove unused CALENDLY_API_TOKEN vars.
+[✅] Verify Calendly iframe loads full calendar on /contact.
+[✅] Confirm booking completes in Calendly widget and invite email is received.
